@@ -1,2 +1,2 @@
 # ACTION_CHESS
-A very cool game
+A very cool game made by Boubker Elamri and Sanae Dariouche
