@@ -1,0 +1,249 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://composant/scenes/main.gd" type="Script" id=1]
+[ext_resource path="res://composant/scripts/zlij.tres" type="TileSet" id=2]
+[ext_resource path="res://composant/scenes/rook.tscn" type="PackedScene" id=3]
+[ext_resource path="res://composant/scenes/knight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://composant/scenes/bichop.tscn" type="PackedScene" id=5]
+[ext_resource path="res://composant/scenes/king.tscn" type="PackedScene" id=6]
+[ext_resource path="res://composant/scenes/queen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://composant/scenes/pawn.tscn" type="PackedScene" id=8]
+
+[node name="main_scene" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="board" type="TileMap" parent="."]
+
+transform/pos = Vector2( 191, 30 )
+transform/scale = Vector2( 2, 1 )
+mode = 1
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -131069, 0, -131068, 1, -131067, 0, -131066, 1, -131065, 0, -131064, 1, -131063, 0, -131062, 1, -65533, 1, -65532, 0, -65531, 1, -65530, 0, -65529, 1, -65528, 0, -65527, 1, -65526, 0, 3, 0, 4, 1, 5, 0, 6, 1, 7, 0, 8, 1, 9, 0, 10, 1, 65539, 1, 65540, 0, 65541, 1, 65542, 0, 65543, 1, 65544, 0, 65545, 1, 65546, 0, 131075, 0, 131076, 1, 131077, 0, 131078, 1, 131079, 0, 131080, 1, 131081, 0, 131082, 1, 196611, 1, 196612, 0, 196613, 1, 196614, 0, 196615, 1, 196616, 0, 196617, 1, 196618, 0, 262147, 0, 262148, 1, 262149, 0, 262150, 1, 262151, 0, 262152, 1, 262153, 0, 262154, 1, 327683, 1, 327684, 0, 327685, 1, 327686, 0, 327687, 1, 327688, 0, 327689, 1, 327690, 0 )
+
+[node name="board1" type="TileMap" parent="."]
+
+transform/pos = Vector2( 191, 30 )
+transform/scale = Vector2( 2, 1 )
+mode = 1
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -131069, 0, -131068, 1, -131067, 0, -131066, 1, -131065, 0, -131064, 1, -131063, 0, -131062, 1, -65533, 1, -65532, 0, -65531, 1, -65530, 0, -65529, 1, -65528, 0, -65527, 1, -65526, 0, 3, 0, 4, 1, 5, 0, 6, 1, 7, 0, 8, 1, 9, 0, 10, 1, 65539, 1, 65540, 0, 65541, 1, 65542, 0, 65543, 1, 65544, 0, 65545, 1, 65546, 0, 131075, 0, 131076, 1, 131077, 0, 131078, 1, 131079, 0, 131080, 1, 131081, 0, 131082, 1, 196611, 1, 196612, 0, 196613, 1, 196614, 0, 196615, 1, 196616, 0, 196617, 1, 196618, 0, 262147, 0, 262148, 1, 262149, 0, 262150, 1, 262151, 0, 262152, 1, 262153, 0, 262154, 1, 327683, 1, 327684, 0, 327685, 1, 327686, 0, 327687, 1, 327688, 0, 327689, 1, 327690, 0 )
+
+[node name="player_white" type="Node2D" parent="board1" groups=[
+"white",
+]]
+
+[node name="rook" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 158.316, 33.0727 )
+transform/scale = Vector2( 1.00442, 1.33802 )
+
+[node name="rook1" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 383.247, 258.003 )
+transform/scale = Vector2( 1.00442, 1.33802 )
+
+[node name="knight" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 188.92, 60.7736 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="knight1" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.922, 219.222 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="bichop" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 216.333, 79.433 )
+transform/scale = Vector2( 1, 1.70146 )
+
+[node name="bichop1" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 311.069, 182.48 )
+transform/scale = Vector2( 1, 1.70146 )
+
+[node name="king" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 255.402, 110.635 )
+transform/scale = Vector2( 1, 1.7443 )
+
+[node name="queen" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 285.873, 160.497 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="pawn1" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 125.023, 77.1166 )
+transform/scale = Vector2( 0.49748, 0.818492 )
+
+[node name="pawn2" parent="board1/player_white" groups=[
+"white",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 155.716, 105.355 )
+transform/scale = Vector2( 0.49748, 0.818492 )
+
+[node name="player_black" type="Node2D" parent="." groups=[
+"black",
+]]
+
+transform/pos = Vector2( -191.472, 225.411 )
+transform/scale = Vector2( 2, 1 )
+
+[node name="rook" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 158.316, 33.0727 )
+transform/scale = Vector2( 1.00442, 1.33802 )
+
+[node name="rook1" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 383.247, 258.003 )
+transform/scale = Vector2( 1.00442, 1.33802 )
+
+[node name="knight" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 188.92, 60.7736 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="knight1" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 347.922, 219.222 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="bichop" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 216.333, 79.433 )
+transform/scale = Vector2( 1, 1.70146 )
+
+[node name="bichop1" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 311.069, 182.48 )
+transform/scale = Vector2( 1, 1.70146 )
+
+[node name="king" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 255.402, 110.635 )
+transform/scale = Vector2( 1, 1.7443 )
+
+[node name="queen" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 285.873, 160.497 )
+transform/scale = Vector2( 1, 1.48576 )
+
+[node name="pawn1" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 122.91, 63.951 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn2" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 155.597, 104.948 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn3" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 184.96, 135.973 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn4" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 215.985, 160.35 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn5" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 249.226, 192.483 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn6" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 281.358, 223.508 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn7" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 312.937, 257.857 )
+transform/scale = Vector2( 1, 1.22233 )
+
+[node name="pawn8" parent="player_black" groups=[
+"black",
+] instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 346.732, 288.882 )
+transform/scale = Vector2( 1, 1.22233 )
+
+
