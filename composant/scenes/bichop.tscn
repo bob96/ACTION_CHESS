@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://composant/sprites/fou.png" type="Texture" id=1]
+[ext_resource path="res://composant/scenes/bichop.gd" type="Script" id=2]
+[ext_resource path="res://composant/scenes/piece.tscn" type="PackedScene" id=3]
+
+[node name="bichop" type="Sprite"]
+
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+[node name="piece" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 9.24907, 10.2265 )
+
+
