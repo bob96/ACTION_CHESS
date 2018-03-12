@@ -17,7 +17,7 @@ func _process(delta):
 	
 	pass
 func _input(event):
-	#selection de la paiece a bouger
+	#selection de la piece a bouger
 	if event.is_action_pressed("mouse") and !piece_selected:
 		#getting the piece pos
 		pos_init = print_pos(pieces)
@@ -42,50 +42,19 @@ func _input(event):
 				pawn_mov(pos_sel_board,board_pos,pos_selected)
 			#mouvements du roi
 			if(piece==1):
-				if(pos_sel_board==board_pos-8 or pos_sel_board==board_pos+8 or pos_sel_board==board_pos+1 or pos_sel_board==board_pos-1 or pos_sel_board == board_pos+7 or pos_sel_board== board_pos+9 or pos_sel_board==board_pos-7 or pos_sel_board==board_pos-9 ):
-					basic_mov(pos_init,pos_selected,piece)
-				else:
-					pos_selected=false
+				king_mov(pos_sel_board,board_pos,pos_selected)
+			#mouvements de la tour
 			if(piece==5):
-				var can_move=false
-				var temp=pos_sel_board
-				
-				if temp < board_pos:
-					if(board_pos-temp<8):
-						can_move=true
-					else:
-						while(temp<board_pos):
-							
-							temp=temp+8
-							if(temp==board_pos):
-								can_move=true
-								break
-				elif temp > board_pos :
-					
-					if(temp-board_pos<8):
-						can_move=true
-					else:
-						while temp > board_pos :
-							temp=temp-8
-							if(temp==board_pos):
-								can_move=true
-								break
-					
-				if(can_move):
-					#remove the piece from the initial pos
-					pieces.set_cellv(pos_init,-1)
-					#place the tile in the selected pos 
-					pieces.set_cellv(pos_selected,piece)
-					piece_selected = false
-				else:
-					pos_selected=false
+				rook_mov(pos_sel_board,board_pos,pos_selected)
+			#mouvements du cavalier
 			if(piece==2):
-				if( pos_sel_board-board_pos==6 or pos_sel_board-board_pos==10 or pos_sel_board-board_pos==15 or pos_sel_board-board_pos==17 or board_pos-pos_sel_board==11 or board_pos-pos_sel_board==7 or board_pos-pos_sel_board==16 or board_pos-pos_sel_board==18):
-				#remove the piece from the initial pos
-					pieces.set_cellv(pos_init,-1)
-					#place the tile in the selected pos 
-					pieces.set_cellv(pos_selected,piece)
-					piece_selected = false
+				knight_mov(pos_sel_board,board_pos,pos_selected)
+			#mouvements de la reine
+			if(piece==4):
+				queen_mov(pos_sel_board, board_pos,pos_selected)
+			#mouvements du fou
+			if(piece==0):
+				bishop_mov(pos_sel_board,board_pos,pos_selected)
 		else:
 			print("Veuillez choisir une case vide")
 			piece_selected=false
@@ -95,26 +64,65 @@ func print_pos(tiles):
 	var mouse_pos = get_global_mouse_pos()
 	var tile= tiles.world_to_map(mouse_pos)
 	return tile
-#mouvement pion
+
+############################################################
+############################################################
+
+########################MOUVEMENT PION######################
 func pawn_mov(pos_sel_board,board_pos,pos_selected):
-	if pos_sel_board==board_pos-8:
+	if board_pos>=48 and board_pos<=55:
+		if pos_sel_board==board_pos-8 or pos_sel_board==board_pos-16:
+			basic_mov(pos_init,pos_selected,piece)
+	elif pos_sel_board==board_pos-8:
 		basic_mov(pos_init,pos_selected,piece)
 	else:
 		pos_selected=false
-#mouvement chevalier
-func knight_mov():
-	pass
-#mouvement roi
-func king_mov():
-	pass
-#mouvement reine
-func queen_mov():
-	pass
-#mouvement fou
-func bichop_mov():
-	pass
-#mouvement tour
-func rook(pos_sel_board,board_pos,pos_selected):
+#########################MOUVEMENT CAVALIER###################
+func knight_mov(pos_sel_board,board_pos,pos_selected):
+	if pos_sel_board==board_pos+15 or pos_sel_board==board_pos+17 or pos_sel_board==board_pos+6 or pos_sel_board==board_pos+10 or pos_sel_board==board_pos-10 or pos_sel_board==board_pos-6 or pos_sel_board==board_pos-15 or pos_sel_board==board_pos-17:
+		basic_mov(pos_init,pos_selected,piece)
+	else:
+		pos_selected=false
+##########################MOUVEMENT ROI#######################
+func king_mov(pos_sel_board,board_pos,pos_selected):
+	if(pos_sel_board==board_pos-8 or pos_sel_board==board_pos+8 or pos_sel_board==board_pos+1 or pos_sel_board==board_pos-1 or pos_sel_board == board_pos+7 or pos_sel_board== board_pos+9 or pos_sel_board==board_pos-7 or pos_sel_board==board_pos-9 ):
+		basic_mov(pos_init,pos_selected,piece)
+	else:
+		pos_selected=false
+##########################MOUVEMENTS REINE#####################
+func queen_mov(pos_sel_board,board_pos,pos_selected):
+	rook_mov(pos_sel_board,board_pos,pos_selected)
+	bishop_mov(pos_sel_board,board_pos,pos_selected)
+	
+##########################MOUVEMENTS FOU####################
+func bishop_mov(pos_sel_board,board_pos,pos_selected):
+	var can_move=false
+	var temp1=board_pos
+	var temp2=board_pos
+	if temp1 < pos_sel_board:
+		while(temp1<pos_sel_board or temp2<pos_sel_board):
+			temp1=temp1+7
+			temp2=temp2+9
+			if temp1==pos_sel_board or temp2==pos_sel_board:
+				can_move=true
+				break
+	elif temp1> pos_sel_board:
+		while(temp1>pos_sel_board or temp2>pos_sel_board):
+			temp1=temp1-7
+			temp2=temp2-9
+			if temp1==pos_sel_board or temp2==pos_sel_board:
+				can_move=true
+				break
+	if(can_move):
+		#remove the piece from the initial pos
+		pieces.set_cellv(pos_init,-1)
+		#place the tile in the selected pos 
+		pieces.set_cellv(pos_selected,piece)
+		piece_selected = false
+	else:
+		pos_selected=false
+##########################MOUVEMENTS TOUR#######################
+func rook_mov(pos_sel_board,board_pos,pos_selected):
 	var can_move=false
 	var temp=pos_sel_board
 	
@@ -148,13 +156,13 @@ func rook(pos_sel_board,board_pos,pos_selected):
 		piece_selected = false
 	else:
 		pos_selected=false
-#mouvement diagonal
+########################mouvement diagonal
 func diag_check():
 	pass
-#mouvement Horizental
+########################mouvement Horizental
 func horizental_check():
 	pass
-#mouvement vertical
+########################mouvement vertical
 func vertical_check():
 	pass
 func basic_mov(pos_init,pos_selected,piece):
@@ -163,3 +171,4 @@ func basic_mov(pos_init,pos_selected,piece):
 	#place the tile in the selected pos 
 	pieces.set_cellv(pos_selected,piece)
 	piece_selected = false
+
